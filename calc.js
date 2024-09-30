@@ -1,6 +1,6 @@
 let firstNumber;
 let secondNumber;
-let operators = ['add', 'subtract', 'multiply', 'divide']
+let operator;
 
 function add (a,b){
     return a+b;
