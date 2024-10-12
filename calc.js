@@ -34,13 +34,13 @@ function resetDisplay() {
 }
 
 function toPercent(val) {
-    // return parseFloat(val) * .01;
-    return '0.0' + val;
+    return parseFloat(val) * .01;
+    // return '0.0' + val;
 }
 
 function negate(val) {
-    // return parseFloat(val) * -1;
-    return '-' + val;
+    return parseFloat(val) * -1;
+    // return '-' + val;
 }
 
 const displayWindow = document.querySelector(".display p");
@@ -51,8 +51,8 @@ clear.addEventListener('click', resetDisplay);
 
 const numerals = document.querySelectorAll(".numeral");
 const operators = document.querySelectorAll(".operator");
-const plusMinus = document.querySelector("#plus-minus");
-const percent = document.querySelector("#percent");
+const plusMinus = document.querySelector(".plus-minus");
+const percent = document.querySelector(".percent");
 const equals = document.querySelector('.equals');
 let displayValue;
 let entry = '';
@@ -60,8 +60,19 @@ let counter = 1;
 let endOfCalc = 0;
 
 
-// percent.addEventListener('click', toPercent(displayText))
-// plusMinus.addEventListener('click', negate(displayText))
+percent.addEventListener('click', () => {
+    displayValue = toPercent(displayWindow.textContent);
+    displayWindow.textContent = displayValue;
+    if (counter === 1) firstNumber = displayValue;
+    else secondNumber = displayValue;
+})
+
+plusMinus.addEventListener('click', () => {
+    displayValue = negate(displayWindow.textContent);
+    displayWindow.textContent = displayValue;
+    if (counter === 1) firstNumber = displayValue;
+    else secondNumber = displayValue;
+})
 
 numerals.forEach(button => 
     button.addEventListener('click', event => {
