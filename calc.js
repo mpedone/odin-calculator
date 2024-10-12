@@ -82,10 +82,10 @@ numerals.forEach(button =>
         let value = target.id;
         if (counter === 1) {
             firstNumber += value;
-            displayWindow.textContent = firstNumber;
+            displayWindow.textContent = parseFloat(firstNumber);
         } else {
             secondNumber += value;
-            displayWindow.textContent = secondNumber;
+            displayWindow.textContent = parseFloat(secondNumber);
         }
     })
 )
