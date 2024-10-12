@@ -54,7 +54,7 @@ const operators = document.querySelectorAll(".operator");
 const plusMinus = document.querySelector("#plus-minus");
 const percent = document.querySelector("#percent");
 const equals = document.querySelector('.equals');
-let displayText = [];
+let displayValue;
 let entry = '';
 let counter = 1;
 let endOfCalc = 0;
@@ -71,11 +71,9 @@ numerals.forEach(button =>
         let value = target.id;
         if (counter === 1) {
             firstNumber += value;
-            console.log(`1st: ${firstNumber}`);
             displayWindow.textContent = firstNumber;
         } else {
             secondNumber += value;
-            console.log(`2nd: ${secondNumber}`);
             displayWindow.textContent = secondNumber;
         }
     })
@@ -87,15 +85,19 @@ operators.forEach(op =>
         let value = target.id;
         if (!firstNumber) firstNumber = 0
 
+        if (endOfCalc) {
+            firstNumber = displayValue;
+            secondNumber = '';
+            endOfCalc = 0;
+        }
+
         if (!secondNumber) {
             operator = value;
-            console.log(operator);
             counter = 2;
         } else if (secondNumber) {
-            let displayValue = operate(firstNumber, secondNumber, window[operator])
+            displayValue = operate(firstNumber, secondNumber, window[operator])
             displayWindow.textContent = displayValue;
             operator = value;
-            console.log(operator)
             firstNumber = displayValue;
             secondNumber = '';
         }
@@ -104,9 +106,12 @@ operators.forEach(op =>
 
 equals.addEventListener('click', () => {
     if (!secondNumber) secondNumber = firstNumber;
-    let displayValue = operate(firstNumber, secondNumber, window[operator]);
+    if (!operator) {
+        displayValue = firstNumber;
+    } else {
+        displayValue = operate(firstNumber, secondNumber, window[operator]);
+    }
     displayWindow.textContent = displayValue;
     firstNumber = displayValue;
     endOfCalc = 1;
-    console.log(operator);
 })
