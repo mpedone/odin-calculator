@@ -81,6 +81,8 @@ operators.forEach(op =>
     op.addEventListener('click', event => {
         let target = event.target;
         let value = target.id;
+        if (!firstNumber) firstNumber = 0
+        
         if (!secondNumber) {
             operator = value;
             console.log(operator);
