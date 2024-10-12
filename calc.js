@@ -30,6 +30,7 @@ function resetDisplay() {
     secondNumber = '';
     operator = '';
     counter = 1;
+    endOfCalc = 0;
 }
 
 function toPercent(val) {
@@ -52,16 +53,19 @@ const numerals = document.querySelectorAll(".numeral");
 const operators = document.querySelectorAll(".operator");
 const plusMinus = document.querySelector("#plus-minus");
 const percent = document.querySelector("#percent");
+const equals = document.querySelector('.equals');
 let displayText = [];
 let entry = '';
 let counter = 1;
+let endOfCalc = 0;
+
 
 // percent.addEventListener('click', toPercent(displayText))
 // plusMinus.addEventListener('click', negate(displayText))
 
 numerals.forEach(button => 
     button.addEventListener('click', event => {
-        if (operator === 'equals') resetDisplay();
+        if (endOfCalc) resetDisplay();
         displayWindow.textContent = '';
         let target = event.target;
         let value = target.id;
@@ -82,7 +86,7 @@ operators.forEach(op =>
         let target = event.target;
         let value = target.id;
         if (!firstNumber) firstNumber = 0
-        
+
         if (!secondNumber) {
             operator = value;
             console.log(operator);
@@ -98,81 +102,11 @@ operators.forEach(op =>
     })
 )
 
-
-
-
-
-const buttons = document.querySelectorAll(".button");
-
-
-// let numerals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-// let operators = {'add': '+', 'subtract': '-', 'multiply': '*', 'divide': '/', 'equals': '='};
-
-// let counter = 1;
-
-// buttons.forEach(button => 
-//     button.addEventListener('click', (event) => {
-//         if (operator === 'equals') {
-//             resetDisplay();
-//         }
-//         displayWindow.textContent = '';
-//         let target = event.target;
-//         let value = target.id;
-//         if (numerals.includes(value) && counter === 1) {
-//             firstNumber += value;
-//             displayWindow.textContent = firstNumber;
-//             console.log(`first: ${firstNumber}`);
-//         } else if (Object.keys(operators).includes(value) && firstNumber && !secondNumber) {
-//             displayWindow.textContent = firstNumber;
-//             operator = value;
-//             console.log(operator);
-//             counter = 2;
-//         } else if (Object.keys(operators).includes(value) && !firstNumber) {
-//             firstNumber = '0';
-//             displayWindow.textContent = firstNumber;
-//             operator = value;
-//             counter = 2;
-//         } else if (numerals.includes(value) && firstNumber) {
-//             secondNumber += value;
-//             displayWindow.textContent = secondNumber;
-//             console.log(`second: ${secondNumber}`);
-//         } else if (Object.keys(operators).includes(value) && firstNumber && secondNumber) {
-//             console.log("eval time!");
-//             let displayValue = operate(firstNumber, secondNumber, operator)
-//             console.log(displayValue);
-//             displayWindow.textContent = displayValue;
-//             firstNumber = displayValue;
-//             secondNumber = ''
-//             operator = value;
-//         }
-//     })
-// )
-
-
-// buttons.forEach(button => 
-//     button.addEventListener('click', (event) => {
-//         displayWindow.textContent = '';
-//         count += 1;
-//         let target = event.target;
-//         let value = target.id;
-//         console.log(numerals.includes(value));
-//         if (count === 1) {
-//             firstNumber = value;
-//             displayWindow.textContent = '';
-//             displayWindow.textContent = firstNumber;
-//         } else if (count === 2) {
-//             operator = value;
-//             displayWindow.textContent = '';
-//             displayWindow.textContent = operators[operator];
-//         } else if (count === 3) {
-//             secondNumber = value;
-//             displayWindow.textContent = '';
-//             displayWindow.textContent = secondNumber;
-//         } else {
-//             result = operate(firstNumber, secondNumber, operator);
-//             displayWindow.textContent = '';
-//             displayWindow.textContent = result;
-//             count = 0;
-//         }
-//     })
-// )
+equals.addEventListener('click', () => {
+    if (!secondNumber) secondNumber = firstNumber;
+    let displayValue = operate(firstNumber, secondNumber, window[operator]);
+    displayWindow.textContent = displayValue;
+    firstNumber = displayValue;
+    endOfCalc = 1;
+    console.log(operator);
+})
