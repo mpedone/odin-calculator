@@ -89,7 +89,8 @@ numerals.forEach(button =>
         let value = target.id;
         if (counter === 1) {
             firstNumber += value;
-            displayWindow.textContent = parseFloat(firstNumber);
+            // displayWindow.textContent = parseFloat(firstNumber);
+            displayWindow.textContent = firstNumber;
         } else {
             secondNumber += value;
             displayWindow.textContent = parseFloat(secondNumber);
@@ -98,11 +99,16 @@ numerals.forEach(button =>
 )
 
 decimal.addEventListener('click', () => {
+    if (endOfCalc) resetDisplay();
     if (decimalCount === 0 && counter === 1){
-        firstNumber += '.';
+        if (!firstNumber) firstNumber += '0.';
+        else firstNumber += '.';
+        displayWindow.textContent = firstNumber;
         decimalCount = 1;
     } else if (decimalCount === 0 && counter === 2) {
-        secondNumber += '.';
+        if (!secondNumber) secondNumber += '0.';
+        else secondNumber += '.';
+        displayWindow.textContent = secondNumber;
         decimalCount = 1;
     }
 })
