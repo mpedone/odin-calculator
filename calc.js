@@ -90,10 +90,16 @@ numerals.forEach(button =>
         if (counter === 1) {
             firstNumber += value;
             // displayWindow.textContent = parseFloat(firstNumber);
+            if (firstNumber.length > 1 && firstNumber[0] === '0') {
+                firstNumber = firstNumber.slice(1,);
+            }
             displayWindow.textContent = firstNumber;
         } else {
             secondNumber += value;
-            displayWindow.textContent = parseFloat(secondNumber);
+            if (secondNumber.length > 1 && secondNumber[0] === '0') {
+                secondNumber = secondNumber.slice(1,);
+            }
+            displayWindow.textContent = secondNumber;
         }
     })
 )
