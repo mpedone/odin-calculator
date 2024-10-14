@@ -15,7 +15,11 @@ function multiply (a,b){
 }
 
 function divide (a,b){
-    return a/b;
+    if (b !== 0) {
+        return a/b;
+    } else {
+        return "no.";
+    }
 }
 
 function operate(a, b, operator){
@@ -90,30 +94,51 @@ numerals.forEach(button =>
     })
 )
 
-operators.forEach(op => 
-    op.addEventListener('click', event => {
-        let target = event.target;
-        let value = target.id;
-        if (!firstNumber) firstNumber = 0
+operators.forEach(op => {
+        op.addEventListener('click', event => {
+            let target = event.target;
+            let value = target.id;
+            if (!firstNumber) firstNumber = 0
 
-        if (endOfCalc) {
-            firstNumber = displayValue;
-            secondNumber = '';
-            endOfCalc = 0;
-        }
+            if (endOfCalc) {
+                firstNumber = displayValue;
+                secondNumber = '';
+                endOfCalc = 0;
+            }
 
-        if (!secondNumber) {
-            operator = value;
-            counter = 2;
-        } else if (secondNumber) {
-            displayValue = operate(firstNumber, secondNumber, window[operator])
-            displayWindow.textContent = displayValue;
-            operator = value;
-            firstNumber = displayValue;
-            secondNumber = '';
-        }
-    })
+            if (!secondNumber) {
+                operator = value;
+                counter = 2;
+            } else if (secondNumber) {
+                displayValue = operate(firstNumber, secondNumber, window[operator])
+                displayWindow.textContent = displayValue;
+                operator = value;
+                firstNumber = displayValue;
+                secondNumber = '';
+            }
+        });
+    }
 )
+
+// window.addEventListener('keydown', event => {
+//     if (endOfCalc) resetDisplay();
+//     displayWindow.textContent = '';
+//     let value = event.key;
+//     console.log(!isNaN(value))
+//     if (Number.isInteger(parseFloat(value)) && !isNaN(value)) {
+//         if (counter === 1) {
+//             firstNumber += value;
+//             displayWindow.textContent = parseFloat(firstNumber);
+//         } else {
+//             secondNumber += value;
+//             displayWindow.textContent = parseFloat(secondNumber);
+//         }} else {
+//             console.log(`1st: ${firstNumber}`)
+//             console.log(`2nd: ${secondNumber}`)
+//             console.log(`dV: ${displayValue}`)
+//             displayWindow.textContent = displayValue || secondNumber || firstNumber;
+//         }
+// })
 
 equals.addEventListener('click', () => {
     if (!secondNumber) secondNumber = firstNumber;
