@@ -35,6 +35,7 @@ function resetDisplay() {
     operator = '';
     counter = 1;
     endOfCalc = 0;
+    decimalCount = 0;
 }
 
 function toPercent(val) {
@@ -54,6 +55,7 @@ const clear = document.querySelector(".clear");
 clear.addEventListener('click', resetDisplay);
 
 const numerals = document.querySelectorAll(".numeral");
+const decimal = document.querySelector(".decimal");
 const operators = document.querySelectorAll(".operator");
 const plusMinus = document.querySelector(".plus-minus");
 const percent = document.querySelector(".percent");
@@ -62,6 +64,7 @@ let displayValue;
 let entry = '';
 let counter = 1;
 let endOfCalc = 0;
+let decimalCount = 0;
 
 
 percent.addEventListener('click', () => {
@@ -94,6 +97,16 @@ numerals.forEach(button =>
     })
 )
 
+decimal.addEventListener('click', () => {
+    if (decimalCount === 0 && counter === 1){
+        firstNumber += '.';
+        decimalCount = 1;
+    } else if (decimalCount === 0 && counter === 2) {
+        secondNumber += '.';
+        decimalCount = 1;
+    }
+})
+
 operators.forEach(op => {
         op.addEventListener('click', event => {
             let target = event.target;
@@ -109,12 +122,14 @@ operators.forEach(op => {
             if (!secondNumber) {
                 operator = value;
                 counter = 2;
+                decimalCount = 0;
             } else if (secondNumber) {
                 displayValue = operate(firstNumber, secondNumber, window[operator])
                 displayWindow.textContent = displayValue;
                 operator = value;
                 firstNumber = displayValue;
                 secondNumber = '';
+                decimalCount = 0;
             }
         });
     }
