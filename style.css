@@ -15,7 +15,24 @@
     font-family: "D7MR";
     src: url("./fonts/DSEG7Modern-Regular.woff") format('woff');
     src: url("./fonts/DSEG7Modern-Regular.woff2") format('woff2');
+
+    font-family: "D7ML";
+    src: url("./fonts/DSEG7Modern-Light.woff") format('woff');
+    src: url("./fonts/DSEG7Modern-Light.woff2") format('woff2');
+
+    font-family: "D7MB";
+    src: url("./fonts/DSEG7Modern-Bold.woff") format('woff');
+    src: url("./fonts/DSEG7Modern-Bold.woff2") format('woff2');
+    
+    font-family: "D7CB";
+    src: url("./fonts/DSEG7Classic-Bold.woff") format('woff');
+    src: url("./fonts/DSEG7Classic-Bold.woff2") format('woff2');
   }
+
+body {
+    display: flex;
+    justify-content: center;
+}
 
 .calc-body,
 .display {
@@ -40,7 +57,7 @@
     margin: 10px 0;
     text-align: right;
     background-color: #81F5EA;
-    font-family: 'D7MR', Orbitron, sans-serif;
+    font-family: 'D7CB', Orbitron, sans-serif;
     box-shadow: inset 13px 15px 15px -14px rgba(0, 0, 0, 0.9), inset 18px 36px 37px -10px rgba(255, 255, 255, 0.5);
     font-size: 24pt;
 }
@@ -57,7 +74,7 @@
     margin-left: 10px;
     gap: 10px;
     color: #fff;
-    font-family: Orbitron;
+    font-family: 'D7CB', Orbitron;
     font-weight: 900;
     font-size: 18pt;
 }
@@ -87,6 +104,14 @@
 
 .numeral:active {
     background-color: #8F1F45;
+    box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
+}
+
+.plus-minus,
+.percent,
+.operator,
+.equals {
+    font-family: monospace;
 }
 
 .plus-minus,
@@ -97,6 +122,7 @@
 .plus-minus:active,
 .percent:active {
     background-color: #C85454;
+    box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
 }
 
 .operator {
@@ -104,6 +130,7 @@
 }
 .operator:active {
     background-color: #033D62;
+    box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
 }
 
 .equals {
@@ -111,6 +138,7 @@
 }
 .equals:active {
     background-color: #341648;
+    box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
 }
 
 .clear {
@@ -118,4 +146,5 @@
 }
 .clear:active {
     background-color: #C658C8;
+    box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
 }
