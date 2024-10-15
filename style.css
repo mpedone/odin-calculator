@@ -1,24 +1,53 @@
 * {
     box-sizing: border-box;
 }
+
+/* @font-face {
+    font-family: 'DESG7';
+    src: local('DSEG7 Modern'),
+         url('DSEG7Modern-Regular.woff2') format('woff2'),
+         url('DSEG7Modern-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+@font-face {
+    font-family: "D7MR";
+    src: url("./fonts/DSEG7Modern-Regular.woff") format('woff');
+    src: url("./fonts/DSEG7Modern-Regular.woff2") format('woff2');
+  }
+
+.calc-body,
+.display {
+    border: 1px solid #334455;
+    border-radius: 20px;
+}
+
 .calc-body {
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     width: 570px;
-    height: 380px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #334455;
+    box-shadow: inset 5px 5px 21px -5px rgba(255, 255, 255, 0.9), inset -10px -8px 23px -10px rgba(0, 0, 0, 1);
 }
 
 .display {
     width: 550px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     margin: 10px 0;
     text-align: right;
+    background-color: #81F5EA;
+    font-family: 'D7MR', Orbitron, sans-serif;
+    box-shadow: inset 13px 15px 15px -14px rgba(0, 0, 0, 0.9), inset 18px 36px 37px -10px rgba(255, 255, 255, 0.5);
+    font-size: 24pt;
 }
 
 .display p {
     padding-right: 20px;
+    margin: 10px 0;
 }
 
 .buttons {
@@ -27,14 +56,66 @@
     flex-wrap: wrap;
     margin-left: 10px;
     gap: 10px;
+    color: #fff;
+    font-family: Orbitron;
+    font-weight: 900;
+    font-size: 18pt;
 }
 
 .buttons p {
-    border: 1px solid #000;
+    border: 1px solid #334455;
+    border-radius: 20px;
     padding: 2px;
     text-align: center;
     width: 130px;
     height: 50px;
     margin: 0;
     padding-top: 15px;
+    box-shadow: inset -7px -7px 5px -1px rgba(0, 0, 0, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(255, 255, 255, 0.7);
+    padding-bottom: 45px;
+}
+
+/* .buttons p:active {
+    background-color: #8F1F45;
+} */
+
+.numeral,
+.decimal,
+.button {
+    background-color: #DC3069;
+}
+
+.numeral:active {
+    background-color: #8F1F45;
+}
+
+.plus-minus,
+.percent {
+    background-color: #F26666;
+}
+
+.plus-minus:active,
+.percent:active {
+    background-color: #C85454;
+}
+
+.operator {
+    background-color: #04588C;
+}
+.operator:active {
+    background-color: #033D62;
+}
+
+.equals {
+    background-color: #532473;
+}
+.equals:active {
+    background-color: #341648;
+}
+
+.clear {
+    background-color: #F06BF2;
+}
+.clear:active {
+    background-color: #C658C8;
 }

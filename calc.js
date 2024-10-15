@@ -90,13 +90,17 @@ numerals.forEach(button =>
         if (counter === 1) {
             firstNumber += value;
             // displayWindow.textContent = parseFloat(firstNumber);
-            if (firstNumber.length > 1 && firstNumber[0] === '0') {
+            if (firstNumber.length > 1 && 
+                firstNumber[0] === '0' && 
+                firstNumber[1] !== '.') {
                 firstNumber = firstNumber.slice(1,);
             }
             displayWindow.textContent = firstNumber;
         } else {
             secondNumber += value;
-            if (secondNumber.length > 1 && secondNumber[0] === '0') {
+            if (secondNumber.length > 1 && 
+                secondNumber[0] === '0' && 
+                secondNumber[1] !== '.') {
                 secondNumber = secondNumber.slice(1,);
             }
             displayWindow.textContent = secondNumber;
