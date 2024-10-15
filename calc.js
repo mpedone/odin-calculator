@@ -3,7 +3,8 @@ let secondNumber = '';
 let operator;
 
 function add (a,b){
-    return a+b;
+    // return a+b;
+    return ((a*100)+(b*100))/100;
 }
 
 function subtract (a,b){
@@ -24,7 +25,7 @@ function divide (a,b){
 
 function operate(a, b, operator){
     // result = window[operator](parseFloat(a),parseFloat(b));
-    result = operator(parseFloat(a),parseFloat(b));
+    result = operator(parseFloat(a),parseFloat(b)).toString();
     return result;
 }
 
@@ -39,15 +40,22 @@ function resetDisplay() {
 }
 
 function toPercent(val) {
-    return parseFloat(val) * .01;
+    return (parseFloat(val) * .01).toString();
     // return '0.0' + val;
 }
 
 function negate(val) {
-    return parseFloat(val) * -1;
+    return (parseFloat(val) * -1).toString();
     // return '-' + val;
 }
 
+function updateDisplay(val) {
+    console.log(val.length);
+    if (val.length > 10) {
+        // return val.substring(0,10);
+        return parseFloat(val).toExponential(8);
+    } else return val
+}
 const displayWindow = document.querySelector(".display p");
 displayWindow.textContent = 0;
 
@@ -69,14 +77,14 @@ let decimalCount = 0;
 
 percent.addEventListener('click', () => {
     displayValue = toPercent(displayWindow.textContent);
-    displayWindow.textContent = displayValue;
+    displayWindow.textContent = updateDisplay(displayValue);
     if (counter === 1) firstNumber = displayValue;
     else secondNumber = displayValue;
 })
 
 plusMinus.addEventListener('click', () => {
     displayValue = negate(displayWindow.textContent);
-    displayWindow.textContent = displayValue;
+    displayWindow.textContent = updateDisplay(displayValue);
     if (counter === 1) firstNumber = displayValue;
     else secondNumber = displayValue;
 })
@@ -95,7 +103,8 @@ numerals.forEach(button =>
                 firstNumber[1] !== '.') {
                 firstNumber = firstNumber.slice(1,);
             }
-            displayWindow.textContent = firstNumber;
+            // displayWindow.textContent = firstNumber;
+            displayWindow.textContent = updateDisplay(firstNumber);
         } else {
             secondNumber += value;
             if (secondNumber.length > 1 && 
@@ -103,7 +112,7 @@ numerals.forEach(button =>
                 secondNumber[1] !== '.') {
                 secondNumber = secondNumber.slice(1,);
             }
-            displayWindow.textContent = secondNumber;
+            displayWindow.textContent = updateDisplay(secondNumber);
         }
     })
 )
@@ -113,12 +122,12 @@ decimal.addEventListener('click', () => {
     if (decimalCount === 0 && counter === 1){
         if (!firstNumber) firstNumber += '0.';
         else firstNumber += '.';
-        displayWindow.textContent = firstNumber;
+        displayWindow.textContent = updateDisplay(firstNumber);
         decimalCount = 1;
     } else if (decimalCount === 0 && counter === 2) {
         if (!secondNumber) secondNumber += '0.';
         else secondNumber += '.';
-        displayWindow.textContent = secondNumber;
+        displayWindow.textContent = updateDisplay(secondNumber);
         decimalCount = 1;
     }
 })
@@ -141,7 +150,7 @@ operators.forEach(op => {
                 decimalCount = 0;
             } else if (secondNumber) {
                 displayValue = operate(firstNumber, secondNumber, window[operator])
-                displayWindow.textContent = displayValue;
+                displayWindow.textContent = updateDisplay(displayValue);
                 operator = value;
                 firstNumber = displayValue;
                 secondNumber = '';
@@ -178,7 +187,7 @@ equals.addEventListener('click', () => {
     } else {
         displayValue = operate(firstNumber, secondNumber, window[operator]);
     }
-    displayWindow.textContent = displayValue;
+    displayWindow.textContent = updateDisplay(displayValue);
     firstNumber = displayValue;
     endOfCalc = 1;
 })

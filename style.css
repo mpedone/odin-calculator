@@ -75,6 +75,14 @@ body {
     opacity: 0.1;
 }
 
+.displayBackground2 {
+    visibility: hidden;
+    position: absolute;
+    top: 20px;
+    right: 290px;
+    opacity: 0.1;
+}
+
 .buttons {
     text-align: center;
     display: flex;
