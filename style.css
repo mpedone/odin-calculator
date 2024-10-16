@@ -31,7 +31,8 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .calc-body,
@@ -164,4 +165,8 @@ body {
 .clear:active {
     background-color: #C658C8;
     box-shadow: inset -4px -4px 5px -1px rgba(255, 255, 255, 0.15), 4px 3px 20px -10px rgba(0, 0, 0, 0.4), inset 2px 2px 5px -1px rgba(0, 0, 0, 0.4);
+}
+
+.return {
+    margin-top: 30px;
 }
