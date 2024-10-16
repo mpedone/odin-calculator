@@ -69,11 +69,11 @@ body {
 }
 
 .displayBackground {
-    visibility: hidden;
+    /* visibility: hidden; */
     position: absolute;
     top: 20px;
-    right: 265px;
     opacity: 0.1;
+    width: inherit;
 }
 
 .displayBackground2 {
